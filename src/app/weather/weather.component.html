@@ -1,10 +1,15 @@
 <div class="myContainer">
   <div class="card text-white bg-primary m-5" style="width: 25rem;">
     <div class="card-header text-center">
-      <h2>City Name : Dhaka</h2>
+      <div class="search">
+        <form #form="ngForm" (submit)="onSubmite()">
+          <input type="text" name="" id="" placeholder="search city"  name="city" [(ngModel)]="cityName">
+        </form>
+      </div>
+      <h2>City Name : {{cityName}}</h2>
       <p><img src="{{iconURL}}" alt="iconURL"></p>
     </div>
-    <div class="card-body text-center">
+    <div class="card-body text-center ">
       <p class="card-text">Summary : {{summary}}</p>
       <p class="card-text">Temperature : {{temperature}} °F</p>
       <p class="card-text">Feels like : {{feelsLikeTemp}} °F</p>
@@ -13,3 +18,58 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="container">
+  <div class="upper-data">
+    <img src="../assets/hot.webp" *ngIf="14 > 15">
+    <img src="../assets/cold.jpeg" *ngIf="14 <= 15">
+
+    <div class="weather-data">
+      <div class="location">Wellington</div>
+      <div class="temperature">{{14.40 | number: '1.0-0'}}°C</div>
+    </div>
+  </div>
+  <div class="lower-data">
+    <div class="more-info-lavel">
+      More Information
+    </div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-lavel">
+          <img src="../assets/min.jpg" >
+          <span>min</span>
+        </div>
+        <div class="info-block-value">
+          10°
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lavel">
+          <img src="../assets/max.jpg" >
+          <span>mix</span>
+        </div>
+        <div class="info-block-value">
+          20°
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lavel">
+          <img src="../assets/humidity.png" >
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value">
+          77%
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-lavel">
+          <img src="../assets/windy.webp" >
+          <span>windy</span>
+        </div>
+        <div class="info-block-value">
+          11 km/h
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

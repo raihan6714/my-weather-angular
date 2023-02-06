@@ -14,10 +14,30 @@ export class WeatherComponent implements OnInit{
   feelsLikeTemp: number = 0;
   pressure:number= 0;
   humidity: number = 0;
+  cityName:string = 'Paris';
+  units:string = 'imperial';
 
   constructor(private WeatherService:WeatherService){}
   ngOnInit(): void {
-    this.WeatherService.getWeather().subscribe({
+    this.getWeatherData()
+    this.cityName = '';
+  }
+
+  /**
+     * search weather by city name
+     * @endpoint http://localhost:4200/
+     * @method  Get
+     * @request body{""}
+     * @response All Call Complate
+  **/
+
+  onSubmite(){
+    this.getWeatherData()
+    this.cityName = '';
+  }
+
+  private getWeatherData(){
+    this.WeatherService.getWeather(this.cityName,this.units).subscribe({
       next: (res)=>{
         // console.log(res)
         this.myWeather = res;
@@ -28,6 +48,7 @@ export class WeatherComponent implements OnInit{
         this.pressure = this.myWeather.main.pressure;
         this.humidity = this.myWeather.main.humidity;
         this.iconURL = "http://openweathermap.org/img/wn/"+ this.myWeather.weather[0].icon + "@2x.png";
+        this.cityName = this.myWeather.name;
       },
       error: (error)=>console.log(error.message),
       complete: ()=>console.log("All Call Complate")
